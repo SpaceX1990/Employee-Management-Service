@@ -11,6 +11,7 @@ import { FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {MatIconModule} from "@angular/material/icon";
       MatFormFieldModule,
       MatButtonModule,
       MatIconModule,
+      MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
