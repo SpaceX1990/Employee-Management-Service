@@ -77,10 +77,21 @@ Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, s
   <!-- Define columns -->
   <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
     <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
-    <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+    <td mat-cell *matCellDef="let element">
+      <!-- Render actions as buttons -->
+      <ng-container *ngIf="column !== 'Actions'; else actionsColumn">
+        {{ element[column] }}
+      </ng-container>
+      <ng-template #actionsColumn>
+        <button mat-stroked-button color="primary" (click)="editItem(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-stroked-button color="warn" (click)="deleteItem(element)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </ng-template>
+    </td>
   </ng-container>
-
-  <!-- Add more columns as needed -->
 
   <!-- Define a row -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
