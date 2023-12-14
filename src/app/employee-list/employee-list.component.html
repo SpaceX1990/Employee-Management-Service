@@ -1,7 +1,19 @@
-<h1>LF10-Starter</h1>
+<!--<h1>LF10-Starter</h1>
 Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, sollten hier die Namen der in der Datenbank gespeicherten Mitarbeiter angezeigt werden!
+
 <ul>
   <li *ngFor="let e of employees$ | async">
     {{e.lastName }}, {{e.firstName}}
   </li>
-</ul>
+</ul>-->
+
+<p>Employee</p>
+<mat-form-field class="example-form-field">
+  <mat-label>Search an employee</mat-label>
+  <input matInput placeholder="Enter text here" [(ngModel)]="searchText" />
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
+
+
