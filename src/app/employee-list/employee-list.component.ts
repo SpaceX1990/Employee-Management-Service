@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Observable, of} from "rxjs";
 import {Employee} from "../Employee";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
 import {MatButton} from "@angular/material/button";
 
 @Component({
@@ -12,7 +13,7 @@ import {MatButton} from "@angular/material/button";
 export class EmployeeListComponent {
   employees$: Observable<Employee[]>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.employees$ = of([]);
     this.fetchData();
   }

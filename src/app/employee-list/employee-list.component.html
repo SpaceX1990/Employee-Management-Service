@@ -1,6 +1,7 @@
 <ul>
   <li *ngFor="let e of employees$ | async">
-    {{e.lastName }}, {{e.firstName}}
+    {{ e.lastName }}, {{ e.firstName }}, {{ e.id }}
+    <button routerLink="/details/{{e.id}}">edit</button>
   </li>
 </ul>
 
