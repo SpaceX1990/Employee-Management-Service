@@ -3,7 +3,7 @@
 <mat-table class="mat-table-list" [dataSource]="dataSource">
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-    <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
+    <mat-cell routerLink="/details/{{employee.id}}" *matCellDef="let employee"> {{employee.id}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="firstName">
@@ -38,5 +38,4 @@
 
   <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  <button routerLink="/details/{{employee.id}}">edit</button>
 </mat-table>
