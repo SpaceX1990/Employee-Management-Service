@@ -1,69 +1,41 @@
 <h2>Manage employee's</h2>
 
-<mat-form-field class="example-form-field">
-  <mat-label>Search an employee</mat-label>
-  <input matInput placeholder="Enter text here" [(ngModel)]="searchText" />
-  <button matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
-
-<div class="relative-container">
-  <button mat-stroked-button color="primary" class="logout-button">
-    <mat-icon>power_settings_new</mat-icon>
-  </button>
-</div>
-
-<br>
-
-<!--<div class="relative-create-button-container">-->
-<!--  <button mat-button style="color: limegreen" (click)="createItem()" class="create-button">-->
-<!--    Create new employee-->
-<!--  </button>-->
-<!--</div>-->
-
-<table mat-table [dataSource]="dataSource">
-
-  <!-- Define columns -->
-  <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-    <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
-    <td mat-cell *matCellDef="let element">
-
-      <ng-template #actionsColumn>
-        <button mat-stroked-button color="basic" (click)="viewItem(element)">
-          <mat-icon>visibility</mat-icon>
-        </button>
-        <button mat-stroked-button color="primary" (click)="editItem(element)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-stroked-button color="warn" (click)="deleteItem(element)">
-          <mat-icon>delete_outline</mat-icon>
-        </button>
-      </ng-template>
-
-    </td>
+<mat-table class="mat-table-list" [dataSource]="dataSource">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
   </ng-container>
 
-  <!-- Define a row -->
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <ng-container matColumnDef="firstName">
+    <mat-header-cell *matHeaderCellDef>Vorname</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.firstName}} </mat-cell>
+  </ng-container>
 
-</table>
+  <ng-container matColumnDef="lastName">
+    <mat-header-cell *matHeaderCellDef>Nachname</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.lastName}} </mat-cell>
+  </ng-container>
 
-<div class="relative-paging-container">
-  <button mat-stroked-button color="primary" class="paging-buttons">
-    <mat-icon>first_page</mat-icon>
-  </button>
+  <ng-container matColumnDef="street">
+    <mat-header-cell *matHeaderCellDef>Straße</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.street}} </mat-cell>
+  </ng-container>
 
-  <button mat-stroked-button color="primary" class="paging-buttons">
-    <mat-icon>chevron_left</mat-icon>
-  </button>
+  <ng-container matColumnDef="postcode">
+    <mat-header-cell *matHeaderCellDef>PLZ</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.postcode}} </mat-cell>
+  </ng-container>
 
-  <button mat-stroked-button color="primary" class="paging-buttons">
-    <mat-icon>chevron_right</mat-icon>
-  </button>
+  <ng-container matColumnDef="city">
+    <mat-header-cell *matHeaderCellDef>Stadt</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.city}} </mat-cell>
+  </ng-container>
 
-  <button mat-stroked-button color="primary" class="paging-buttons">
-    <mat-icon>last_page</mat-icon>
-  </button>
-</div>
+  <ng-container matColumnDef="phone">
+    <mat-header-cell *matHeaderCellDef>Telefonnummer</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.phone}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
