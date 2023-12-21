@@ -27,6 +27,11 @@ export class EmployeeListComponent {
     // Handle delete action, e.g., show confirmation dialog
     console.log('Delete item:', item);
   }
+  viewItem(employee: any) {
+    // Implementieren Sie hier die Logik, um die Sichtbarkeit des Elements zu steuern.
+    console.log('View Item:', employee);
+    // Fügen Sie hier den Code hinzu, um die Sichtbarkeit zu steuern, z. B. API-Aufrufe oder lokale Logik.
+  }
   employees$: Observable<Employee[]>;
 
   constructor(private http: HttpClient) {
