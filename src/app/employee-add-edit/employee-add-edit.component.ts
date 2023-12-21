@@ -48,10 +48,10 @@ export class EmployeeAddEditComponent implements OnInit {
     this.location.back();
   }
 
-  /*save(): void {
+  save(): void {
     if (this.employee) {
       this.employeeService.updateHero(this.employee)
         .subscribe(() => this.goBack());
     }
-  }*/
+  }
 }

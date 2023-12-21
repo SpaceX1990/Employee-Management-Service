@@ -19,4 +19,8 @@ export class EmployeeService {
     return this.httpClient.post('/backend', employee);
   }
 
+  updateHero(employee: Employee): Observable<Employee> {
+      return this.httpClient.put<Employee>(`/backend`, employee)
+    }
+
 }

@@ -3,6 +3,7 @@ import {Observable, of} from "rxjs";
 import {Employee} from "../Employee";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {EmployeeAddEditComponent} from "../employee-add-edit/employee-add-edit.component";
 
 @Component({
   selector: 'app-employee-list',
