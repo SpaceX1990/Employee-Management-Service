@@ -1,7 +1,42 @@
-<h1>LF10-Starter</h1>
-<button routerLink="/details">neuen MA hinzufügen</button><ul>
-  <li *ngFor="let e of employees$ | async">
-    {{ e.lastName }}, {{ e.firstName }}, {{ e.id }}
-    <button routerLink="/details/{{e.id}}">edit</button>
-  </li>
-</ul>
+<h2>Manage employee's</h2>
+
+<mat-table class="mat-table-list" [dataSource]="dataSource">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="firstName">
+    <mat-header-cell *matHeaderCellDef>Vorname</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.firstName}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <mat-header-cell *matHeaderCellDef>Nachname</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.lastName}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="street">
+    <mat-header-cell *matHeaderCellDef>Straße</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.street}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="postcode">
+    <mat-header-cell *matHeaderCellDef>PLZ</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.postcode}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="city">
+    <mat-header-cell *matHeaderCellDef>Stadt</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.city}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <mat-header-cell *matHeaderCellDef>Telefonnummer</mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.phone}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <button routerLink="/details/{{employee.id}}">edit</button>
+</mat-table>

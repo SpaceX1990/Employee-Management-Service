@@ -8,6 +8,10 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeAddEditComponent } from './employee-add-edit/employee-add-edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -21,6 +25,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule,
     FormsModule
   ],
   providers: [],
