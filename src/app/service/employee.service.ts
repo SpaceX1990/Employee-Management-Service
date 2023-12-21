@@ -12,15 +12,15 @@ export class EmployeeService {
   }
 
   getEmployees(): Observable<Employee[]> {
-    return this.httpClient.get<Employee[]>('backend')
+    return this.httpClient.get<Employee[]>('/backend')
   }
 
   getEmployee(id: number): Observable<Employee> {
-    return this.httpClient.get(`backend/${id}`);
+    return this.httpClient.get(`/backend/${id}`);
   }
 
   addEmployee(employee: Employee): Observable<Employee> {
-    return this.httpClient.post('backend', employee);
+    return this.httpClient.post('/backend', employee);
   }
 
 }
