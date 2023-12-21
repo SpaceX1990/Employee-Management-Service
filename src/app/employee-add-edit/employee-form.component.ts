@@ -7,10 +7,10 @@ import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-employee-add-edit',
-  templateUrl: './employee-add-edit.component.html',
-  styleUrls: ['./employee-add-edit.component.css']
+  templateUrl: './employee-form.component.html',
+  styleUrls: ['./employee-form.component.css']
 })
-export class EmployeeAddEditComponent implements OnInit {
+export class EmployeeFormComponent implements OnInit {
   employee: Employee | undefined;
   employeeForm: FormGroup;
 

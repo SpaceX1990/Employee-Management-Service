@@ -1,4 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.container-form {
+  display: grid;
+  grid-template-columns: auto auto auto
+}
+
+.column1, .column2, .column3 {
+  display: grid;
+  grid-template-rows: auto auto auto;
+}
+
+.container-form div {
+  grid: auto auto ;
+}
