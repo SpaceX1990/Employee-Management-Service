@@ -36,7 +36,7 @@ export class EmployeeAddEditComponent implements OnInit {
   }
 
   getEmployee(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.employeeService.getEmployee(id)
       .subscribe(employee => {
         this.employee = employee;
