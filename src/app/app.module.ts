@@ -12,11 +12,14 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import { EmployeeCreateComponent } from './employee-create/employee-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    EmployeeCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -24,11 +27,12 @@ import {MatTableModule} from "@angular/material/table";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
-      FormsModule,
-      MatFormFieldModule,
-      MatButtonModule,
-      MatIconModule,
-      MatTableModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
