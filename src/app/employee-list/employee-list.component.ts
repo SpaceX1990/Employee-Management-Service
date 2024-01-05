@@ -34,7 +34,7 @@ const ELEMENT_DATA: DanePracownikow[] = [
 })
 export class EmployeeListComponent {
   searchText: string = ' ';
-  displayedColumns: string[]=['position', 'firstname', 'lastname', 'age', 'street'];
+  displayedColumns: string[]=['position', 'firstname', 'lastname', 'age', 'street', 'action'];
   dataSource = ELEMENT_DATA;
 
   employees$: Observable<Employee[]>;
@@ -53,5 +53,9 @@ export class EmployeeListComponent {
 
   navToCreate() {
     this.router.navigateByUrl("employee/add");
+  }
+
+  navToDetails(position: number) {
+    this.router.navigateByUrl("employee/"+position);
   }
 }

@@ -13,13 +13,13 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import { EmployeeCreateComponent } from './employee-create/employee-create.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
-    EmployeeCreateComponent
+    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule,
