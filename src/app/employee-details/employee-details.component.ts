@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {FORM_MODE} from "../employee-form/employee-form.component";
 import {RouterService} from "../../services/router.service";
+import {EmployeeDetails} from "../../model/EmployeeDetails";
+import {FORM_MODE} from "../../model/FormMode";
 
 
 @Component({
@@ -38,18 +39,3 @@ export class EmployeeDetailsComponent {
 
 }
 
-export interface EmployeeDetails {
-  id: number;
-  lastName: string;
-  firstName: string;
-  street: string;
-  postcode: string;
-  city: string;
-  phone: string;
-  skillset: SkillSet[];
-}
-
-interface SkillSet{
-  skill: string;
-  id: number;
-}

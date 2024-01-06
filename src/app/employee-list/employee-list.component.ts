@@ -11,20 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from "@angular/material/table";
 import {Router} from "@angular/router";
 import {RouterService} from "../../services/router.service";
-
-
-export interface DanePracownikow {
-  firstname: string;
-  lastname: string;
-  street: string;
-  age: number;
-  position: number;
-}
-const ELEMENT_DATA: DanePracownikow[] = [
-  {position: 1, firstname: 'Emmanuel', lastname: 'Olisadebe', age: 45, street:'Yourmamastreet. 8'},
-  {position: 2, firstname: 'Tomasz', lastname: 'Frankowski', age: 40, street:'hejkrolikustr. 15'},
-];
-
+import {EmployeeDetails} from "../../model/EmployeeDetails";
 
 
 @Component({
@@ -35,21 +22,17 @@ const ELEMENT_DATA: DanePracownikow[] = [
 })
 export class EmployeeListComponent {
   searchText: string = ' ';
-  displayedColumns: string[]=['position', 'firstname', 'lastname', 'age', 'street', 'action'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[]=['id', 'firstname', 'lastname', 'street', 'postcode', 'city', 'phone', 'action'];
+  dataSource: EmployeeDetails[] = [];
 
-  employees$: Observable<Employee[]>;
-
-  constructor(private http: HttpClient, private router: Router, private routerService: RouterService) {
-    this.employees$ = of([]);
+  constructor(private http: HttpClient, private routerService: RouterService) {
     this.fetchData();
   }
 
   fetchData() {
-    this.employees$ = this.http.get<Employee[]>('/backend', {
-      headers: new HttpHeaders()
-        .set('Content-Type', 'application/json')
-    });
+    this.http.get<EmployeeDetails[]>('http://localhost:8089/employees').subscribe(data => {
+      this.dataSource = data;
+    })
   }
 
   navToCreate() {

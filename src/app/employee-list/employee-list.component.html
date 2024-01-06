@@ -25,33 +25,41 @@ Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, s
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
-  <ng-container matColumnDef="position">
+  <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="firstname">
     <th mat-header-cell *matHeaderCellDef> Firstname </th>
-    <td mat-cell *matCellDef="let e of employees$ | async"> {{e.firstname}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="lastname">
     <th mat-header-cell *matHeaderCellDef> Lastname </th>
-    <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="age">
-    <th mat-header-cell *matHeaderCellDef> Age </th>
-    <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
   </ng-container>
 
   <ng-container matColumnDef="street">
     <th mat-header-cell *matHeaderCellDef> Street </th>
     <td mat-cell *matCellDef="let element"> {{element.street}} </td>
   </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="postcode">
+    <th mat-header-cell *matHeaderCellDef> Postcode </th>
+    <td mat-cell *matCellDef="let element"> {{element.postcode}} </td>
+  </ng-container>
+  <ng-container matColumnDef="city">
+    <th mat-header-cell *matHeaderCellDef> City </th>
+    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+  </ng-container>
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef> Phone </th>
+    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+  </ng-container>
+
 
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef> Action </th>
