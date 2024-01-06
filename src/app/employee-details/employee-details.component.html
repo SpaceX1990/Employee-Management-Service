@@ -1,4 +1,14 @@
-<p>employee-details works!</p>
 
-{{employee| json}}
+
+<!--{{employee| json}} -->
+<h1>Details</h1>
+<section class="person-cards">
+
+  <app-employee-form [mode]="detailsFormMode" [data]="employeeDetails"></app-employee-form>
+
+</section>
+
+
+
+<button class="ok-button" mat-flat-button color="primary" (click)="navToMainMenu()" >OK</button>
 

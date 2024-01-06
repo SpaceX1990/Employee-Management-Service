@@ -7,19 +7,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import {MatCardModule} from "@angular/material/card";
+import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
+import { EmployeeAddComponent } from './employee-add/employee-add.component';
+import { EmployeeFormComponent } from './employee-form/employee-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    EmployeeEditComponent,
+    EmployeeAddComponent,
+    EmployeeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +40,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     MatIconModule,
     MatTableModule,
     MatToolbarModule,
+    MatCardModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

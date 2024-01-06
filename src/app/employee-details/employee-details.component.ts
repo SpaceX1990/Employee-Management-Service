@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-
+import {FORM_MODE} from "../employee-form/employee-form.component";
+import {RouterService} from "../../services/router.service";
 
 
 @Component({
@@ -11,30 +12,33 @@ import {HttpClient} from "@angular/common/http";
 })
 export class EmployeeDetailsComponent {
 
-  constructor(private route:ActivatedRoute, private http: HttpClient) {
+  constructor(private route:ActivatedRoute, private http: HttpClient, private routerService:RouterService) {
   }
+
+  detailsFormMode: FORM_MODE = FORM_MODE.DETAIL;
   employeeId: string = '';
-  employee: EmployeeDetails | undefined;
+  employeeDetails: EmployeeDetails | null = null;
+
   ngOnInit(){
-    console.log('heeej kruliku, w szaaaaaarej mgöeeeej');
     let employeeIdParam = this.route.snapshot.paramMap.get(':employeeId');
-    console.log(this.route.snapshot.paramMap);
     if(employeeIdParam != null) {
       this.employeeId = employeeIdParam;
     }
 
-    this.http.get<EmployeeDetails>('http://localhost:8089/employees/' + employeeIdParam).subscribe(data => {
-      this.employee = data;
+    this.http.get<EmployeeDetails>('http://localhost:8089/employees/' + this.employeeId).subscribe(data => {
+      this.employeeDetails = data;
     });
 
   }
 // TODO dodac componenty do HTML
 
-
+  navToMainMenu() {
+    this.routerService.navToEmployeeList();
+  }
 
 }
 
-interface EmployeeDetails {
+export interface EmployeeDetails {
   id: number;
   lastName: string;
   firstName: string;

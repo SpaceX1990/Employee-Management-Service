@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from "@angular/material/table";
 import {Router} from "@angular/router";
+import {RouterService} from "../../services/router.service";
 
 
 export interface DanePracownikow {
@@ -39,7 +40,7 @@ export class EmployeeListComponent {
 
   employees$: Observable<Employee[]>;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private routerService: RouterService) {
     this.employees$ = of([]);
     this.fetchData();
   }
@@ -52,10 +53,14 @@ export class EmployeeListComponent {
   }
 
   navToCreate() {
-    this.router.navigateByUrl("employee/add");
+    this.routerService.navToEmployeeCreate();
   }
 
   navToDetails(position: number) {
-    this.router.navigateByUrl("employee/"+position);
+    this.routerService.navToEmployeeDetails(position);
+  }
+
+  navToEdit(position: number) {
+    this.routerService.navToEmployeeEdit(position);
   }
 }
