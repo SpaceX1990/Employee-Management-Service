@@ -12,6 +12,8 @@ import {MatTableModule} from "@angular/material/table";
 import {Router} from "@angular/router";
 import {RouterService} from "../../services/router.service";
 import {EmployeeDetails} from "../../model/EmployeeDetails";
+import {PopupService} from "../../services/popup.service";
+import {EmployeeService} from "../../services/employee.service";
 
 
 @Component({
@@ -25,7 +27,10 @@ export class EmployeeListComponent {
   displayedColumns: string[]=['id', 'firstname', 'lastname', 'street', 'postcode', 'city', 'phone', 'action'];
   dataSource: EmployeeDetails[] = [];
 
-  constructor(private http: HttpClient, private routerService: RouterService) {
+  constructor(private http: HttpClient,
+              private routerService: RouterService,
+              private popupService: PopupService,
+              private employeeService: EmployeeService) {
     this.fetchData();
   }
 
@@ -45,5 +50,16 @@ export class EmployeeListComponent {
 
   navToEdit(position: number) {
     this.routerService.navToEmployeeEdit(position);
+  }
+
+
+  deleteEmployee(id: number) {
+    this.popupService.openConfirmPopup().subscribe(isYes => {
+      if(isYes) {
+        this.employeeService.deleteById(id).subscribe( ()=> {
+          this.fetchData();
+        });
+      }
+    });
   }
 }

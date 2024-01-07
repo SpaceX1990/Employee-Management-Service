@@ -13,11 +13,15 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatDialogModule} from "@angular/material/dialog";
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import {MatCardModule} from "@angular/material/card";
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ConfirmPopupComponent } from './popup/confirm-popup/confirm-popup.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
     EmployeeDetailsComponent,
     EmployeeEditComponent,
     EmployeeAddComponent,
-    EmployeeFormComponent
+    EmployeeFormComponent,
+    ConfirmPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,8 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
     MatToolbarModule,
     MatCardModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

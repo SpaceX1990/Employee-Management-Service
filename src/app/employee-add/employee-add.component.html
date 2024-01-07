@@ -4,10 +4,13 @@
 <h1>Create a new employee</h1>
 <section class="person-cards">
 
-  <app-employee-form [mode]="addFormMode"></app-employee-form>
+  <app-employee-form [mode]="addFormMode" (onChange)="onEmployeeChange($event)"></app-employee-form>
+
 
 </section>
 
 
 
 <button mat-flat-button color="primary" (click)="navToMainMenu()">Cancel</button>
+
+<button mat-flat-button color="primary" (click)="saveEmployee()">Save</button>

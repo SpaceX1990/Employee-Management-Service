@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {NonNullableFormBuilder} from "@angular/forms";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {FormGroup, NonNullableFormBuilder} from "@angular/forms";
 import {EmployeeDetails} from "../../model/EmployeeDetails";
 import {FORM_MODE} from "../../model/FormMode";
 
@@ -9,6 +9,7 @@ import {FORM_MODE} from "../../model/FormMode";
   styleUrls: ['./employee-form.component.css']
 })
 export class EmployeeFormComponent {
+  employeeForm: FormGroup<any>;
 
   @Input() set mode(mode: FORM_MODE) {
     switch (mode) {
@@ -43,6 +44,18 @@ export class EmployeeFormComponent {
     this.employeeForm.controls.phone.disable();
   }
   constructor(private readonly _fb:NonNullableFormBuilder) {
+    this.employeeForm = this._fb.group({
+      id: [ {value: null as number | null, disabled: true}],
+      lastName: '',
+      firstName: '',
+      street: '',
+      postcode: '',
+      city: '',
+      phone: '',
+    })
+    this.employeeForm.valueChanges.subscribe(value => {
+      this.onChange.emit(value);   // do bramy emituje zmiany
+    })
 
   }
 
@@ -50,17 +63,10 @@ export class EmployeeFormComponent {
     if (employee != null){
       this.employeeForm.setValue(employee);
     }
-
   }
 
-  employeeForm = this._fb.group({
-    id: [ {value: null as number | null, disabled: true}],
-    lastName: '',
-    firstName: '',
-    street: '',
-    postcode: '',
-    city: '',
-    phone: '',
-  })
+  @Output() onChange = new EventEmitter<EmployeeDetails>();
+
+
 }
 
