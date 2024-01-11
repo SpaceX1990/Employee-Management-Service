@@ -1,27 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import {Observable, of} from "rxjs";
+import {Component, OnInit} from '@angular/core';
 import {Employee} from "../Employee";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {EmployeeService} from "../service/employee.service";
+import {MatTableDataSource} from "@angular/material/table";
+import {EmployeeAddEditComponent} from "../employee-add-edit/employee-add-edit.component";
 
 @Component({
-  selector: 'app-employee-list',
-  templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.css']
+    selector: 'app-employee-list',
+    templateUrl: './employee-list.component.html',
+    styleUrls: ['./employee-list.component.css']
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit{
 
-  employees$: Observable<Employee[]>;
+    dataSource = new MatTableDataSource<Employee>();
+    displayedColumns: string[] = ['id', 'lastName', 'firstName',  'street', 'postcode', 'city', 'phone'];
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.employees$ = of([]);
-    this.fetchData();
-  }
+    constructor(private http: HttpClient, private router: Router, private employeeService: EmployeeService) {
 
-  fetchData() {
-    this.employees$ = this.http.get<Employee[]>('/backend', {
-      headers: new HttpHeaders()
-        .set('Content-Type', 'application/json')
-    });
-  }
+    }
+
+    ngOnInit() {
+        this.getEmployees();
+    }
+
+    private getEmployees() {
+        this.employeeService.getEmployees().subscribe(
+            employeesData => {
+                this.dataSource.data = employeesData;
+            }
+        )
+    }
 }

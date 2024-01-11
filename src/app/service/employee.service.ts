@@ -11,12 +11,20 @@ export class EmployeeService {
   constructor(private httpClient: HttpClient) {
   }
 
+  getEmployees(): Observable<Employee[]> {
+    return this.httpClient.get<Employee[]>('/backend')
+  }
+
   getEmployee(id: number): Observable<Employee> {
-    return this.httpClient.get(`backend/${id}`);
+    return this.httpClient.get(`/backend/${id}`);
   }
 
   addEmployee(employee: Employee): Observable<Employee> {
     return this.httpClient.post('/backend', employee);
   }
+
+  updateHero(employee: Employee): Observable<Employee> {
+      return this.httpClient.put<Employee>(`/backend`, employee)
+    }
 
 }

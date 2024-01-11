@@ -36,7 +36,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   getEmployee(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.employeeService.getEmployee(id)
       .subscribe(employee => {
         this.employee = employee;
@@ -48,10 +48,10 @@ export class EmployeeFormComponent implements OnInit {
     this.location.back();
   }
 
-  /*save(): void {
+  save(): void {
     if (this.employee) {
       this.employeeService.updateHero(this.employee)
         .subscribe(() => this.goBack());
     }
-  }*/
+  }
 }
