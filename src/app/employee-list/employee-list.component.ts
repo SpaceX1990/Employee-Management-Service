@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {EmployeeService} from "../service/employee.service";
 import {MatTableDataSource} from "@angular/material/table";
-import {EmployeeAddEditComponent} from "../employee-add-edit/employee-add-edit.component";
+import {EmployeeFormComponent} from "../employee-add-edit/employee-form.component";
 
 @Component({
     selector: 'app-employee-list',

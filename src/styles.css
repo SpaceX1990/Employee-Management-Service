@@ -21,5 +21,5 @@ body {
 }
 
 .container-form div {
-  grid: auto auto ;
+  margin-left: 20px;
 }
