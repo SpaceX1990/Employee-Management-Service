@@ -8,7 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatTableModule} from "@angular/material/table";
+import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {Router} from "@angular/router";
 import {RouterService} from "../../services/router.service";
 import {EmployeeDetails} from "../../model/EmployeeDetails";
@@ -25,7 +25,7 @@ import {EmployeeService} from "../../services/employee.service";
 export class EmployeeListComponent {
   searchText: string = ' ';
   displayedColumns: string[]=['id', 'firstname', 'lastname', 'street', 'postcode', 'city', 'phone', 'action'];
-  dataSource: EmployeeDetails[] = [];
+  dataSource: MatTableDataSource<EmployeeDetails> = new MatTableDataSource<EmployeeDetails>([]);
 
   constructor(private http: HttpClient,
               private routerService: RouterService,
@@ -36,7 +36,7 @@ export class EmployeeListComponent {
 
   fetchData() {
     this.http.get<EmployeeDetails[]>('http://localhost:8089/employees').subscribe(data => {
-      this.dataSource = data;
+      this.dataSource.data = data;
     })
   }
 
@@ -61,5 +61,10 @@ export class EmployeeListComponent {
         });
       }
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

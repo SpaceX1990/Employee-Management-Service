@@ -10,7 +10,7 @@ Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, s
 <p>Employee</p>
 <mat-form-field class="example-form-field">
   <mat-label>Search an employee</mat-label>
-  <input matInput placeholder="Enter text here" [(ngModel)]="searchText" />
+  <input matInput (keyup)="applyFilter($event)" placeholder="Enter text here" [(ngModel)]="searchText" />
     <button matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
       <mat-icon>close</mat-icon>
     </button>
@@ -79,5 +79,3 @@ Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, s
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
-
