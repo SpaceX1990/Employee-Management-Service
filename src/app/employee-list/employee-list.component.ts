@@ -5,6 +5,7 @@ import {EmployeeDetails} from "../../model/EmployeeDetails";
 import {PopupService} from "../../services/popup.service";
 import {EmployeeService} from "../../services/employee.service";
 import {NotificationService} from "../../services/notification.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 
 @Component({
@@ -16,7 +17,7 @@ import {NotificationService} from "../../services/notification.service";
 export class EmployeeListComponent {
   searchText: string = ' ';
   displayedColumns: string[]=['id', 'firstname', 'lastname', 'street', 'postcode', 'city', 'phone', 'action'];
-  dataSource: EmployeeDetails[] = [];
+  dataSource: MatTableDataSource<EmployeeDetails> = new MatTableDataSource<EmployeeDetails>([])
 
   constructor(private http: HttpClient,
               private routerService: RouterService,
@@ -28,7 +29,7 @@ export class EmployeeListComponent {
 
   fetchData() {
     this.http.get<EmployeeDetails[]>('http://localhost:8089/employees').subscribe(data => {
-      this.dataSource = data;
+      this.dataSource.data = data;
     })
   }
 
@@ -54,5 +55,10 @@ export class EmployeeListComponent {
         });
       }
     });
+  }
+
+  applyFilter(event:Event){
+    const filterValue=(event.target as HTMLInputElement).value;
+    this.dataSource.filter=filterValue.trim().toLowerCase();
   }
 }
