@@ -1,10 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { HttpClient } from '@angular/common/http';
-import { EmployeeDetails } from '../../model/EmployeeDetails';
-import { RouterService } from '../../services/router.service';
-import { PopupService } from '../../services/popup.service';
-import { EmployeeService } from '../../services/employee.service';
+import {Component, ViewChild} from '@angular/core';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import {HttpClient} from '@angular/common/http';
+import {EmployeeDetails} from '../../model/EmployeeDetails';
+import {RouterService} from '../../services/router.service';
+import {PopupService} from '../../services/popup.service';
+import {EmployeeService} from '../../services/employee.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -32,23 +32,17 @@ export class EmployeeListComponent {
   fetchData() {
     this.http.get<EmployeeDetails[]>('http://localhost:8089/employees').subscribe((data) => {
       this.dataSource = data;
-      this.totalItems = this.dataSource.length; // Set the totalItems property
+      this.totalItems = this.dataSource.length;
       this.paginator.length = this.totalItems;
       this.paginator.pageSize = this.pageSize;
 
-      // Ensure current page is within valid range after data is fetched
-      const currentPage = Math.floor(this.paginator.pageIndex * this.paginator.pageSize / this.totalItems);
-      this.paginator.pageIndex = currentPage;
+      this.paginator.pageIndex = Math.floor(this.paginator.pageIndex * this.paginator.pageSize / this.totalItems);
 
-      // Update the displayed data based on the current page
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       const endIndex = startIndex + this.paginator.pageSize;
       this.dataSource = this.dataSource.slice(startIndex, endIndex);
     });
   }
-
-
-
 
   navToCreate() {
     this.routerService.navToEmployeeCreate();
@@ -76,11 +70,8 @@ export class EmployeeListComponent {
     const startIndex = event.pageIndex * event.pageSize;
     const endIndex = startIndex + event.pageSize;
 
-    // Update the displayed data by slicing the dataSource
     this.dataSource = this.dataSource.slice(startIndex, endIndex);
 
-    // Update the totalItems property
     this.totalItems = this.dataSource.length;
   }
-
 }
