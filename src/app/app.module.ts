@@ -21,6 +21,7 @@ import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmPopupComponent } from './popup/confirm-popup/confirm-popup.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ConfirmPopupComponent } from './popup/confirm-popup/confirm-popup.compo
     MatCardModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

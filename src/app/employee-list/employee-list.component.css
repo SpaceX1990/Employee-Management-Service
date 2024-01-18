@@ -1,7 +1,5 @@
-.example-form-field {
-    width: 225px;
-}
-
-table {
-    width: 100%;
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

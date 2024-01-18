@@ -1,12 +1,3 @@
-<!--<h1>LF10-Starter</h1>
-Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, sollten hier die Namen der in der Datenbank gespeicherten Mitarbeiter angezeigt werden!
-
-<ul>
-  <li *ngFor="let e of employees$ | async">
-    {{e.lastName }}, {{e.firstName}}
-  </li>
-</ul>-->
-
 <p>Employee</p>
 <mat-form-field class="example-form-field">
   <mat-label>Search an employee</mat-label>
@@ -18,51 +9,58 @@ Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, s
 
 <button mat-flat-button color="primary" (click)="navToCreate()">Create</button>
 
+<p>Employee List</p>
+<div class="topBar">
+  <div class="searchBar">
+    <mat-form-field class="example-form-field">
+      <mat-label>Search an employee</mat-label>
+      <input matInput placeholder="Enter text here" [(ngModel)]="searchText"/>
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="createButtonContainer">
+    <button class="createButton" mat-flat-button color="primary" (click)="navToCreate()">Create</button>
+  </div>
+</div>
 <hr>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <th mat-header-cell *matHeaderCellDef> No.</th>
+    <td mat-cell *matCellDef="let element"> {{ element.id }}</td>
   </ng-container>
 
-  <!-- Name Column -->
   <ng-container matColumnDef="firstname">
-    <th mat-header-cell *matHeaderCellDef> Firstname </th>
-    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+    <th mat-header-cell *matHeaderCellDef> Firstname</th>
+    <td mat-cell *matCellDef="let element"> {{ element.firstName }}</td>
   </ng-container>
 
-  <!-- Weight Column -->
   <ng-container matColumnDef="lastname">
-    <th mat-header-cell *matHeaderCellDef> Lastname </th>
-    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    <th mat-header-cell *matHeaderCellDef> Lastname</th>
+    <td mat-cell *matCellDef="let element"> {{ element.lastName }}</td>
   </ng-container>
 
   <ng-container matColumnDef="street">
-    <th mat-header-cell *matHeaderCellDef> Street </th>
-    <td mat-cell *matCellDef="let element"> {{element.street}} </td>
+    <th mat-header-cell *matHeaderCellDef> Street</th>
+    <td mat-cell *matCellDef="let element"> {{ element.street }}</td>
   </ng-container>
-  <!-- Symbol Column -->
   <ng-container matColumnDef="postcode">
-    <th mat-header-cell *matHeaderCellDef> Postcode </th>
-    <td mat-cell *matCellDef="let element"> {{element.postcode}} </td>
+    <th mat-header-cell *matHeaderCellDef> Postcode</th>
+    <td mat-cell *matCellDef="let element"> {{ element.postcode }}</td>
   </ng-container>
   <ng-container matColumnDef="city">
-    <th mat-header-cell *matHeaderCellDef> City </th>
-    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+    <th mat-header-cell *matHeaderCellDef> City</th>
+    <td mat-cell *matCellDef="let element"> {{ element.city }}</td>
   </ng-container>
   <ng-container matColumnDef="phone">
-    <th mat-header-cell *matHeaderCellDef> Phone </th>
-    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    <th mat-header-cell *matHeaderCellDef> Phone</th>
+    <td mat-cell *matCellDef="let element"> {{ element.phone }}</td>
   </ng-container>
 
 
   <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <th mat-header-cell *matHeaderCellDef> Action</th>
     <td mat-cell *matCellDef="let element">
       <button mat-icon-button (click)="navToDetails(element.id)">
         <mat-icon>library_books</mat-icon>

@@ -9,7 +9,7 @@ import {FORM_MODE} from "../../model/FormMode";
   styleUrls: ['./employee-form.component.css']
 })
 export class EmployeeFormComponent {
-  employeeForm: FormGroup<any>;
+  employeeForm: FormGroup;
 
   @Input() set mode(mode: FORM_MODE) {
     switch (mode) {
@@ -43,6 +43,7 @@ export class EmployeeFormComponent {
     this.employeeForm.controls.city.disable();
     this.employeeForm.controls.phone.disable();
   }
+
   constructor(private readonly _fb:NonNullableFormBuilder) {
     this.employeeForm = this._fb.group({
       id: [ {value: null as number | null, disabled: true}],
@@ -51,7 +52,7 @@ export class EmployeeFormComponent {
       street: '',
       postcode: '',
       city: '',
-      phone: '',
+      phone: ''
     })
     this.employeeForm.valueChanges.subscribe(value => {
       this.onChange.emit(value);
