@@ -1,33 +1,64 @@
-import {Component, OnInit} from '@angular/core';
-import {Employee} from "../Employee";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {EmployeeService} from "../service/employee.service";
+import { Component } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {RouterService} from "../../services/router.service";
+import {EmployeeDetails} from "../../model/EmployeeDetails";
+import {PopupService} from "../../services/popup.service";
+import {EmployeeService} from "../../services/employee.service";
+import {NotificationService} from "../../services/notification.service";
 import {MatTableDataSource} from "@angular/material/table";
 
+
 @Component({
-    selector: 'app-employee-list',
-    templateUrl: './employee-list.component.html',
-    styleUrls: ['./employee-list.component.css']
+  selector: 'app-employee-list',
+  templateUrl: './employee-list.component.html',
+  styleUrls: ['./employee-list.component.css'],
+
 })
-export class EmployeeListComponent implements OnInit{
+export class EmployeeListComponent {
+  searchText: string = ' ';
+  displayedColumns: string[]=['id', 'firstname', 'lastname', 'street', 'postcode', 'city', 'phone', 'action'];
+  dataSource: MatTableDataSource<EmployeeDetails> = new MatTableDataSource<EmployeeDetails>([])
 
-    dataSource = new MatTableDataSource<Employee>();
-    displayedColumns: string[] = ['id', 'lastName', 'firstName',  'street', 'postcode', 'city', 'phone'];
+  constructor(private http: HttpClient,
+              private routerService: RouterService,
+              private popupService: PopupService,
+              private employeeService: EmployeeService,
+              private notificationService: NotificationService) {
+    this.fetchData();
+  }
 
-    constructor(private http: HttpClient, private router: Router, private employeeService: EmployeeService) {
+  fetchData() {
+    this.http.get<EmployeeDetails[]>('http://localhost:8089/employees').subscribe(data => {
+      this.dataSource.data = data;
+    })
+  }
 
-    }
+  navToCreate() {
+    this.routerService.navToEmployeeCreate();
+  }
 
-    ngOnInit() {
-        this.getEmployees();
-    }
+  navToDetails(position: number) {
+    this.routerService.navToEmployeeDetails(position);
+  }
 
-    private getEmployees() {
-        this.employeeService.getEmployees().subscribe(
-            employeesData => {
-                this.dataSource.data = employeesData;
-            }
-        )
-    }
+  navToEdit(position: number) {
+    this.routerService.navToEmployeeEdit(position);
+  }
+
+
+  deleteEmployee(id: number) {
+    this.popupService.openConfirmPopup().subscribe(isYes => {
+      if(isYes) {
+        this.employeeService.deleteById(id).subscribe( ()=> {
+          this.fetchData();
+          this.notificationService.showDeletedNotification();
+        });
+      }
+    });
+  }
+
+  applyFilter(event:Event){
+    const filterValue=(event.target as HTMLInputElement).value;
+    this.dataSource.filter=filterValue.trim().toLowerCase();
+  }
 }

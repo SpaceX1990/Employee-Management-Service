@@ -1,0 +1,9 @@
+.mat-dialog-container{
+
+  text-align: center;
+  margin-top: 45px;
+
+  button{
+    margin: 20px;
+  }
+}

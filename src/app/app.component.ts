@@ -1,7 +1,4 @@
 import {Component} from '@angular/core';
-import {Employee} from "./Employee";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +7,7 @@ import {Observable, of} from "rxjs";
 })
 export class AppComponent {
 
-  constructor() {
- }
 
+  constructor() {
+  }
 }

@@ -1,41 +1,81 @@
-<h2>Manage employee's</h2>
+<p>Employee</p>
+<mat-form-field class="example-form-field">
+  <mat-label>Search an employee</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Enter text here" [(ngModel)]="searchText" />
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
 
-<mat-table class="mat-table-list" [dataSource]="dataSource">
+<button mat-flat-button color="primary" (click)="navToCreate()">Create</button>
+
+<p>Employee List</p>
+<div class="topBar">
+  <div class="searchBar">
+    <mat-form-field class="example-form-field">
+      <mat-label>Search an employee</mat-label>
+      <input matInput placeholder="Enter text here" [(ngModel)]="searchText"/>
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="createButtonContainer">
+    <button class="createButton" mat-flat-button color="primary" (click)="navToCreate()">Create</button>
+  </div>
+</div>
+<hr>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-    <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> No.</th>
+    <td mat-cell *matCellDef="let element"> {{ element.id }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="firstName">
-    <mat-header-cell *matHeaderCellDef>Vorname</mat-header-cell>
-    <mat-cell *matCellDef="let employee"> {{employee.firstName}} </mat-cell>
+  <ng-container matColumnDef="firstname">
+    <th mat-header-cell *matHeaderCellDef> Firstname</th>
+    <td mat-cell *matCellDef="let element"> {{ element.firstName }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="lastName">
-    <mat-header-cell *matHeaderCellDef>Nachname</mat-header-cell>
-    <mat-cell *matCellDef="let employee"> {{employee.lastName}} </mat-cell>
+  <ng-container matColumnDef="lastname">
+    <th mat-header-cell *matHeaderCellDef> Lastname</th>
+    <td mat-cell *matCellDef="let element"> {{ element.lastName }}</td>
   </ng-container>
 
   <ng-container matColumnDef="street">
-    <mat-header-cell *matHeaderCellDef>Straße</mat-header-cell>
-    <mat-cell *matCellDef="let employee"> {{employee.street}} </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> Street</th>
+    <td mat-cell *matCellDef="let element"> {{ element.street }}</td>
   </ng-container>
-
   <ng-container matColumnDef="postcode">
-    <mat-header-cell *matHeaderCellDef>PLZ</mat-header-cell>
-    <mat-cell *matCellDef="let employee"> {{employee.postcode}} </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> Postcode</th>
+    <td mat-cell *matCellDef="let element"> {{ element.postcode }}</td>
   </ng-container>
-
   <ng-container matColumnDef="city">
-    <mat-header-cell *matHeaderCellDef>Stadt</mat-header-cell>
-    <mat-cell *matCellDef="let employee"> {{employee.city}} </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> City</th>
+    <td mat-cell *matCellDef="let element"> {{ element.city }}</td>
   </ng-container>
-
   <ng-container matColumnDef="phone">
-    <mat-header-cell *matHeaderCellDef>Telefonnummer</mat-header-cell>
-    <mat-cell *matCellDef="let employee"> {{employee.phone}} </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> Phone</th>
+    <td mat-cell *matCellDef="let element"> {{ element.phone }}</td>
   </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="navToDetails(element.id)">
+        <mat-icon>library_books</mat-icon>
+      </button>
+      <button mat-icon-button (click)="navToEdit(element.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteEmployee(element.id)">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+

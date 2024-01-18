@@ -1,0 +1,15 @@
+
+
+<!--{{employee| json}} -->
+<h1>Update employee</h1>
+<section class="person-cards">
+
+  <app-employee-form [mode]="editFormMode" [data]="employeeDetails" (onChange)="onEmployeeChange($event)"></app-employee-form>
+
+</section>
+
+
+
+<button mat-flat-button color="primary" (click)="navToMainMenu()">Cancel</button>
+<button mat-flat-button color="primary" (click)="updateEmployee()">Update</button>
+

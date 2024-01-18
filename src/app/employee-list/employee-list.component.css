@@ -1,36 +1,5 @@
-.example-form-field {
-  width: 200px;
-}
-
-.relative-container {
-  position: relative; /* Setzt die relative Positionierung für die umgebende Struktur */
-}
-
-.logout-button {
-  position: absolute; /* Setzt die absolute Positionierung für den Button */
-  top: -90px;         /* Entfernung vom oberen Rand der relative-container */
-  right: 50px;       /* Entfernung vom rechten Rand der relative-container */
-  z-index: 1000;     /* Optional: Setzt die Z-Reihenfolge, falls andere Elemente die Position beeinflussen */
-}
-
-.relative-paging-container {
-  position: relative;
-}
-
-.paging-buttons {
-  position: relative;
-  top: 220px;
-  right: -1212px;
-  z-index: 1000;
-}
-
-.relative-create-button-container {
-  position: relative;
-}
-
-.create-button {
-  position: absolute;
-  top: -50px;
-  right: 50px;
-  z-index: 1000;
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
