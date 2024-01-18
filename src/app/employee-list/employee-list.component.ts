@@ -14,6 +14,7 @@ import {RouterService} from "../../services/router.service";
 import {EmployeeDetails} from "../../model/EmployeeDetails";
 import {PopupService} from "../../services/popup.service";
 import {EmployeeService} from "../../services/employee.service";
+import {NotificationService} from "../../services/notification.service";
 
 
 @Component({
@@ -30,7 +31,8 @@ export class EmployeeListComponent {
   constructor(private http: HttpClient,
               private routerService: RouterService,
               private popupService: PopupService,
-              private employeeService: EmployeeService) {
+              private employeeService: EmployeeService,
+              private notificationService: NotificationService) {
     this.fetchData();
   }
 
@@ -58,6 +60,7 @@ export class EmployeeListComponent {
       if(isYes) {
         this.employeeService.deleteById(id).subscribe( ()=> {
           this.fetchData();
+          this.notificationService.showDeletedNotification();
         });
       }
     });

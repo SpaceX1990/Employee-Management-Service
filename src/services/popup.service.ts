@@ -12,8 +12,8 @@ export class PopupService {
 
   openConfirmPopup() : Observable<boolean> {
     return this.dialog.open(ConfirmPopupComponent, {
-      height: '400px',
-      width: '600px',
+      height: '200px',
+      width: '300px'
     }).afterClosed();
   }
 }

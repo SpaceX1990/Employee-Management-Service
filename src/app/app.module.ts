@@ -22,7 +22,6 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmPopupComponent } from './popup/confirm-popup/confirm-popup.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,8 +30,7 @@ import { ConfirmPopupComponent } from './popup/confirm-popup/confirm-popup.compo
     EmployeeEditComponent,
     EmployeeAddComponent,
     EmployeeFormComponent,
-    ConfirmPopupComponent
-  ],
+    ConfirmPopupComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

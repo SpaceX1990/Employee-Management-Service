@@ -10,7 +10,13 @@ export class NotificationService {
 
   showSavedNotification() {
     this.snackBar.open('Operation completed successfully', 'Ok', {
-      duration: 7000,
+      duration: 1800,
+      horizontalPosition: "end",
+      verticalPosition: "top"
+    });
+  }  showDeletedNotification() {
+    this.snackBar.open('Operation completed successfully', 'Ok', {
+      duration: 1800,
       horizontalPosition: "end",
       verticalPosition: "top"
     });

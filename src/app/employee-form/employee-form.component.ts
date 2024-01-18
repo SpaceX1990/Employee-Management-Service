@@ -54,7 +54,7 @@ export class EmployeeFormComponent {
       phone: '',
     })
     this.employeeForm.valueChanges.subscribe(value => {
-      this.onChange.emit(value);   // do bramy emituje zmiany
+      this.onChange.emit(value);
     })
 
   }
@@ -66,7 +66,5 @@ export class EmployeeFormComponent {
   }
 
   @Output() onChange = new EventEmitter<EmployeeDetails>();
-
-
 }
 
