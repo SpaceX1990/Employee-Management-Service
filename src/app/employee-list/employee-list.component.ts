@@ -1,15 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Observable, of} from "rxjs";
-import {Employee} from "../Employee";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatTableModule} from "@angular/material/table";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {RouterService} from "../../services/router.service";
 import {EmployeeDetails} from "../../model/EmployeeDetails";
 import {PopupService} from "../../services/popup.service";
