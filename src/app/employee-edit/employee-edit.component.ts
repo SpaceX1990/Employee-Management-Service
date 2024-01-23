@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute} from "@angular/router";
 import {RouterService} from "../../services/router.service";
-import {EmployeeDetails} from "../../model/EmployeeDetails";
+import {EmployeeModel} from "../../model/EmployeeModel";
 import {FORM_MODE} from "../../model/FormMode";
 import {EmployeeService} from "../../services/employee.service";
 import {NotificationService} from "../../services/notification.service";
@@ -15,8 +14,8 @@ import {NotificationService} from "../../services/notification.service";
 export class EmployeeEditComponent {
   editFormMode: FORM_MODE = FORM_MODE.EDIT;
   employeeId: number | null = null;
-  employeeDetails: EmployeeDetails | null = null;
-  changedEmployeeDetails: EmployeeDetails | null = null;
+  employeeDetails: EmployeeModel | null = null;
+  changedEmployeeDetails: EmployeeModel | null = null;
 
   constructor(private route:ActivatedRoute, private routerService:RouterService, private employeeService: EmployeeService,
               private notificationService: NotificationService) {
@@ -32,15 +31,13 @@ export class EmployeeEditComponent {
         this.employeeDetails = data;
       });
     }
-
-
   }
 
   navToMainMenu() {
     this.routerService.navToEmployeeList();
   }
 
-  onEmployeeChange(employeeDetails: EmployeeDetails){
+  onEmployeeChange(employeeDetails: EmployeeModel){
     this.changedEmployeeDetails = employeeDetails;
   }
 
@@ -52,7 +49,4 @@ export class EmployeeEditComponent {
       });
     }
   }
-
-
-
 }

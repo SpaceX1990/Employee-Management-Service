@@ -1,6 +1,6 @@
 import {SkillSet} from "./SkillSet";
 
-export interface EmployeeDetails {
+export interface EmployeeModel {
   id: number;
   lastName: string;
   firstName: string;
@@ -8,5 +8,7 @@ export interface EmployeeDetails {
   postcode: string;
   city: string;
   phone: string;
+/*
   skillset: SkillSet[];
+*/
 }

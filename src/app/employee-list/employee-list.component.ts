@@ -1,27 +1,23 @@
-import {Component, ViewChild} from '@angular/core';
-import {MatPaginator, PageEvent} from '@angular/material/paginator';
-import {HttpClient} from '@angular/common/http';
-import {EmployeeDetails} from '../../model/EmployeeDetails';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {EmployeeModel} from '../../model/EmployeeModel';
 import {RouterService} from '../../services/router.service';
 import {PopupService} from '../../services/popup.service';
 import {EmployeeService} from '../../services/employee.service';
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css'],
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  searchText: string = ' ';
+  dataSource = new MatTableDataSource<EmployeeModel>();
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'street', 'postcode', 'city', 'phone', 'action'];
-  dataSource: EmployeeDetails[] = [];
-  totalItems: number;
-  pageSize: number = 10;
 
   constructor(
-    private http: HttpClient,
     private routerService: RouterService,
     private popupService: PopupService,
     private employeeService: EmployeeService
@@ -30,18 +26,15 @@ export class EmployeeListComponent {
   }
 
   fetchData() {
-    this.http.get<EmployeeDetails[]>('http://localhost:8089/employees').subscribe((data) => {
-      this.dataSource = data;
-      this.totalItems = this.dataSource.length;
-      this.paginator.length = this.totalItems;
-      this.paginator.pageSize = this.pageSize;
+    this.employeeService.getEmployees().subscribe(
+      (employeesData) => {
+        this.dataSource.data = employeesData;
+      }
+    )
+  }
 
-      this.paginator.pageIndex = Math.floor(this.paginator.pageIndex * this.paginator.pageSize / this.totalItems);
-
-      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      const endIndex = startIndex + this.paginator.pageSize;
-      this.dataSource = this.dataSource.slice(startIndex, endIndex);
-    });
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   navToCreate() {
@@ -66,12 +59,12 @@ export class EmployeeListComponent {
     });
   }
 
-  onPageChanged(event: PageEvent) {
-    const startIndex = event.pageIndex * event.pageSize;
-    const endIndex = startIndex + event.pageSize;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    this.dataSource = this.dataSource.slice(startIndex, endIndex);
-
-    this.totalItems = this.dataSource.length;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

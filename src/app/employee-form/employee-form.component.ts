@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup, NonNullableFormBuilder} from "@angular/forms";
-import {EmployeeDetails} from "../../model/EmployeeDetails";
+import {EmployeeModel} from "../../model/EmployeeModel";
 import {FORM_MODE} from "../../model/FormMode";
 
 @Component({
@@ -10,6 +10,7 @@ import {FORM_MODE} from "../../model/FormMode";
 })
 export class EmployeeFormComponent {
   employeeForm: FormGroup;
+  employee: EmployeeModel;
 
   @Input() set mode(mode: FORM_MODE) {
     switch (mode) {
@@ -33,6 +34,7 @@ export class EmployeeFormComponent {
     this.employeeForm.controls.postcode.enable();
     this.employeeForm.controls.city.enable();
     this.employeeForm.controls.phone.enable();
+    this.employeeForm.controls.skillset.enable();
   }
   private setDetailMode() {
     this.employeeForm.controls.id.disable();
@@ -42,6 +44,7 @@ export class EmployeeFormComponent {
     this.employeeForm.controls.postcode.disable();
     this.employeeForm.controls.city.disable();
     this.employeeForm.controls.phone.disable();
+    this.employeeForm.controls.skillset.disable();
   }
 
   constructor(private readonly _fb:NonNullableFormBuilder) {
@@ -52,20 +55,22 @@ export class EmployeeFormComponent {
       street: '',
       postcode: '',
       city: '',
-      phone: ''
+      phone: '',
+/*
+      skillset: ''
+*/
     })
     this.employeeForm.valueChanges.subscribe(value => {
       this.onChange.emit(value);
     })
-
   }
 
-  @Input() set data(employee:EmployeeDetails | null) {
+  @Input() set data(employee:EmployeeModel | null) {
     if (employee != null){
       this.employeeForm.setValue(employee);
     }
   }
 
-  @Output() onChange = new EventEmitter<EmployeeDetails>();
+  @Output() onChange = new EventEmitter<EmployeeModel>();
 }
 

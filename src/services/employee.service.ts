@@ -1,29 +1,33 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {EmployeeDetails} from "../model/EmployeeDetails";
+import {EmployeeModel} from "../model/EmployeeModel";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-
-  constructor(private http: HttpClient) { }
-
-
-  getById(employeeId: number) : Observable<EmployeeDetails> {
-   return this.http.get<EmployeeDetails>('http://localhost:8089/employees/' + employeeId);
+  constructor(private http: HttpClient) {
   }
 
-  saveNew(employeeDetails: EmployeeDetails) : Observable<EmployeeDetails> {
-    return this.http.post<EmployeeDetails>('http://localhost:8089/employees', employeeDetails);
+  getEmployees(): Observable<EmployeeModel[]> {
+    return this.http.get<EmployeeModel[]>('/backend');
   }
 
-  updateById(employeeId: number, employeeDetails: EmployeeDetails) : Observable<EmployeeDetails> {
-    return this.http.put<EmployeeDetails>('http://localhost:8089/employees/' + employeeId, employeeDetails);
+  getById(employeeId: number): Observable<EmployeeModel> {
+    return this.http.get<EmployeeModel>('/backend' + employeeId);
   }
 
-  deleteById(employeeId: number) : Observable<any> {
-    return this.http.delete('http://localhost:8089/employees/' + employeeId);
+
+  saveNew(employeeDetails: EmployeeModel): Observable<EmployeeModel> {
+    return this.http.post<EmployeeModel>('/backend', employeeDetails);
+  }
+
+  updateById(employeeId: number, employeeModel: EmployeeModel): Observable<EmployeeModel> {
+    return this.http.put<EmployeeModel>('/backend' + employeeId, employeeModel);
+  }
+
+  deleteById(employeeId: number): Observable<any> {
+    return this.http.delete('/backend/' + employeeId);
   }
 }

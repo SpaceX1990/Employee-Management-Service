@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterService} from "../../services/router.service";
 import {FORM_MODE} from "../../model/FormMode";
-import {EmployeeDetails} from "../../model/EmployeeDetails";
+import {EmployeeModel} from "../../model/EmployeeModel";
 import {EmployeeService} from "../../services/employee.service";
 import {NotificationService} from "../../services/notification.service";
 
@@ -13,7 +13,7 @@ import {NotificationService} from "../../services/notification.service";
 export class EmployeeAddComponent {
 
   addFormMode: FORM_MODE = FORM_MODE.ADD;
-  changedEmployeeDetails: EmployeeDetails | null = null;
+  changedEmployeeDetails: EmployeeModel | null = null;
 
   constructor(private routerService:RouterService, private employeeService: EmployeeService,
               private notificationService: NotificationService) {
@@ -23,7 +23,7 @@ export class EmployeeAddComponent {
     this.routerService.navToEmployeeList();
   }
 
-  onEmployeeChange(employeeDetails: EmployeeDetails){
+  onEmployeeChange(employeeDetails: EmployeeModel){
     this.changedEmployeeDetails = employeeDetails;
   }
 

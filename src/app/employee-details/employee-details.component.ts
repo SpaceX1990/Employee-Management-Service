@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {RouterService} from "../../services/router.service";
-import {EmployeeDetails} from "../../model/EmployeeDetails";
+import {EmployeeModel} from "../../model/EmployeeModel";
 import {FORM_MODE} from "../../model/FormMode";
 import {EmployeeService} from "../../services/employee.service";
 
@@ -20,7 +20,7 @@ export class EmployeeDetailsComponent {
 
   detailsFormMode: FORM_MODE = FORM_MODE.DETAIL;
   employeeId: number | null = null;
-  employeeDetails: EmployeeDetails | null = null;
+  employeeDetails: EmployeeModel | null = null;
 
   ngOnInit(){
     let employeeIdParam = this.route.snapshot.paramMap.get(':employeeId');
@@ -32,14 +32,10 @@ export class EmployeeDetailsComponent {
         this.employeeDetails = data;
       });
     }
-
-
   }
-// TODO dodac componenty do HTML
 
   navToMainMenu() {
     this.routerService.navToEmployeeList();
   }
-
 }
 
