@@ -8,7 +8,5 @@ export interface EmployeeModel {
   postcode: string;
   city: string;
   phone: string;
-/*
   skillset: SkillSet[];
-*/
 }
