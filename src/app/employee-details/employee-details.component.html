@@ -1,14 +1,46 @@
+<h2>Employee Details</h2>
 
+<form [formGroup]="employeeForm">
+  <mat-form-field appearance="fill">
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id" readonly>
+  </mat-form-field>
 
-<!--{{employee| json}} -->
-<h1>Details</h1>
-<section class="person-cards">
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName" readonly>
+  </mat-form-field>
 
-  <app-employee-form [mode]="detailsFormMode" [data]="employeeDetails"></app-employee-form>
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="firstName" readonly>
+  </mat-form-field>
 
-</section>
+  <mat-form-field appearance="fill">
+    <mat-label>Street</mat-label>
+    <input matInput formControlName="street" readonly>
+  </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>Postcode</mat-label>
+    <input matInput formControlName="postcode" readonly>
+  </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>City</mat-label>
+    <input matInput formControlName="city" readonly>
+  </mat-form-field>
 
-<button class="ok-button" mat-flat-button color="primary" (click)="navToMainMenu()" >OK</button>
+  <mat-form-field appearance="fill">
+    <mat-label>Phone</mat-label>
+    <input matInput formControlName="phone" readonly>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Skillset</mat-label>
+    <input matInput formControlName="skillset" readonly>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="navToMainMenu()">OK</button>
+</form>
 
