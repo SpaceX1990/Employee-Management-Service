@@ -2,48 +2,31 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {RouterService} from "../../services/router.service";
 import {EmployeeModel} from "../../model/EmployeeModel";
-import {FORM_MODE} from "../../model/FormMode";
 import {EmployeeService} from "../../services/employee.service";
 import {NotificationService} from "../../services/notification.service";
+import {FormBuilder} from "@angular/forms";
+import {EmployeeFormComponent} from "../employee-form/employee-form.component";
 
 @Component({
   selector: 'app-employee-edit',
   templateUrl: './employee-edit.component.html',
   styleUrls: ['./employee-edit.component.css']
 })
-export class EmployeeEditComponent {
-  editFormMode: FORM_MODE = FORM_MODE.EDIT;
-  employeeId: number | null = null;
-  employeeDetails: EmployeeModel | null = null;
-  changedEmployeeDetails: EmployeeModel | null = null;
-
-  constructor(private route:ActivatedRoute, private routerService:RouterService, private employeeService: EmployeeService,
-              private notificationService: NotificationService) {
-  }
-  ngOnInit() {
-    let employeeIdParam = this.route.snapshot.paramMap.get(':employeeId');
-    if (employeeIdParam != null) {
-      this.employeeId = Number.parseInt(employeeIdParam);
-    }
-
-    if (this.employeeId != null){
-      this.employeeService.getById(this.employeeId).subscribe(data => {
-        this.employeeDetails = data;
-      });
-    }
+export class EmployeeEditComponent extends EmployeeFormComponent {
+  constructor(
+    protected routerService: RouterService,
+    protected employeeService: EmployeeService,
+    protected notificationService: NotificationService,
+    protected fb: FormBuilder,
+    protected route: ActivatedRoute
+  ) {
+    super(employeeService, notificationService, fb, route, routerService);
   }
 
-  navToMainMenu() {
-    this.routerService.navToEmployeeList();
-  }
-
-  onEmployeeChange(employeeDetails: EmployeeModel){
-    this.changedEmployeeDetails = employeeDetails;
-  }
-
-  updateEmployee(){
-    if(this.changedEmployeeDetails != null && this.employeeId != null){
-      this.employeeService.updateById(this.employeeId , this.changedEmployeeDetails).subscribe(savedEmployee => {
+  updateEmployee() {
+    if (this.employeeForm.valid) {
+      const newEmployeeModel: EmployeeModel = this.employeeForm.value;
+      this.employeeService.updateById(this.employeeId, newEmployeeModel).subscribe(savedEmployee => {
         this.notificationService.showSavedNotification();
         this.routerService.navToEmployeeDetails(savedEmployee.id);
       });

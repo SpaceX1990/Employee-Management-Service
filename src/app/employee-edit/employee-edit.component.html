@@ -1,15 +1,50 @@
+<h2>Update employee</h2>
 
+<form [formGroup]="employeeForm">
+  <mat-form-field appearance="fill">
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id">
+  </mat-form-field>
 
-<!--{{employee| json}} -->
-<h1>Update employee</h1>
-<section class="person-cards">
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName">
+  </mat-form-field>
 
-  <app-employee-form [mode]="editFormMode" [data]="employeeDetails" (onChange)="onEmployeeChange($event)"></app-employee-form>
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="firstName">
+  </mat-form-field>
 
-</section>
+  <mat-form-field appearance="fill">
+    <mat-label>Street</mat-label>
+    <input matInput formControlName="street">
+  </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>Postcode</mat-label>
+    <input matInput formControlName="postcode">
+    <mat-error *ngIf="employeeForm.get('postcode')?.hasError('pattern')">
+      Please enter a valid 5-digit postcode.
+    </mat-error>
+  </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>City</mat-label>
+    <input matInput formControlName="city">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Phone</mat-label>
+    <input matInput formControlName="phone">
+    <mat-error *ngIf="employeeForm.get('phone')?.hasError('pattern')">
+      Please enter a valid phone number.
+    </mat-error>
+  </mat-form-field>
+</form>
 
 <button mat-flat-button color="primary" (click)="navToMainMenu()">Cancel</button>
-<button mat-flat-button color="primary" (click)="updateEmployee()">Update</button>
+<button mat-flat-button color="primary" type="submit" [disabled]="!employeeForm.valid" (click)="updateEmployee()">
+  Confirm
+</button>
 

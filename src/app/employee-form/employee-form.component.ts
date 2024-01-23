@@ -1,7 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormGroup, NonNullableFormBuilder} from "@angular/forms";
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EmployeeModel} from "../../model/EmployeeModel";
-import {FORM_MODE} from "../../model/FormMode";
+import {EmployeeService} from "../../services/employee.service";
+import {NotificationService} from "../../services/notification.service";
+import {ActivatedRoute} from "@angular/router";
+import {RouterService} from "../../services/router.service";
 
 @Component({
   selector: 'app-employee-form',   // to !
@@ -10,66 +13,55 @@ import {FORM_MODE} from "../../model/FormMode";
 })
 export class EmployeeFormComponent {
   employeeForm: FormGroup;
-  employee: EmployeeModel;
+  employeeId: number;
+  employeeModel: EmployeeModel;
 
-  @Input() set mode(mode: FORM_MODE) {
-    switch (mode) {
-      case FORM_MODE.DETAIL:
-        this.setDetailMode();
-        break;
-      case FORM_MODE.EDIT:
-        this.setAddOrEditMode();
-        break;
-      case FORM_MODE.ADD:
-        this.setAddOrEditMode();
-        break;
+  constructor(
+    protected employeeService: EmployeeService,
+    protected notificationService: NotificationService,
+    protected fb: FormBuilder,
+    protected route: ActivatedRoute,
+    protected routerService: RouterService
+  ) {
+    this.employeeForm = this.fb.group({
+      id: [{value: '', disabled: true}],
+      lastName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      street: ['', Validators.required],
+      postcode: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
+      city: ['', Validators.required],
+      phone: ['', [Validators.pattern(/^(\+?\d+[\s\-]*)+$/)]],
+    });
+  }
+
+  ngOnInit() {
+    let employeeIdParam = this.route.snapshot.paramMap.get(':employeeId');
+
+    if (employeeIdParam != null) {
+      this.employeeId = Number.parseInt(employeeIdParam);
+    }
+
+    if (this.employeeId != null) {
+      this.employeeService.getById(this.employeeId).subscribe(data => {
+        this.employeeModel = data;
+        this.fillFormWithValues();
+      });
     }
   }
 
-  private setAddOrEditMode() {
-    this.employeeForm.controls.id.disable();
-    this.employeeForm.controls.lastName.enable();
-    this.employeeForm.controls.firstName.enable();
-    this.employeeForm.controls.street.enable();
-    this.employeeForm.controls.postcode.enable();
-    this.employeeForm.controls.city.enable();
-    this.employeeForm.controls.phone.enable();
-    this.employeeForm.controls.skillset.enable();
-  }
-  private setDetailMode() {
-    this.employeeForm.controls.id.disable();
-    this.employeeForm.controls.lastName.disable();
-    this.employeeForm.controls.firstName.disable();
-    this.employeeForm.controls.street.disable();
-    this.employeeForm.controls.postcode.disable();
-    this.employeeForm.controls.city.disable();
-    this.employeeForm.controls.phone.disable();
-    this.employeeForm.controls.skillset.disable();
+  fillFormWithValues() {
+    this.employeeForm.patchValue({
+      id: this.employeeModel.id,
+      lastName: this.employeeModel.lastName,
+      firstName: this.employeeModel.firstName,
+      street: this.employeeModel.street,
+      postcode: this.employeeModel.postcode,
+      city: this.employeeModel.city,
+      phone: this.employeeModel.phone,
+    });
   }
 
-  constructor(private readonly _fb:NonNullableFormBuilder) {
-    this.employeeForm = this._fb.group({
-      id: [ {value: null as number | null, disabled: true}],
-      lastName: '',
-      firstName: '',
-      street: '',
-      postcode: '',
-      city: '',
-      phone: '',
-/*
-      skillset: ''
-*/
-    })
-    this.employeeForm.valueChanges.subscribe(value => {
-      this.onChange.emit(value);
-    })
+  navToMainMenu() {
+    this.routerService.navToEmployeeList();
   }
-
-  @Input() set data(employee:EmployeeModel | null) {
-    if (employee != null){
-      this.employeeForm.setValue(employee);
-    }
-  }
-
-  @Output() onChange = new EventEmitter<EmployeeModel>();
 }
