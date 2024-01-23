@@ -14,8 +14,9 @@ export class NotificationService {
       horizontalPosition: "end",
       verticalPosition: "top"
     });
-  }  showDeletedNotification() {
-    this.snackBar.open('Operation completed successfully', 'Ok', {
+  }
+  showDeletedNotification() {
+    this.snackBar.open('Employee successfully deleted', 'Ok', {
       duration: 1800,
       horizontalPosition: "end",
       verticalPosition: "top"

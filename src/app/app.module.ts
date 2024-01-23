@@ -22,7 +22,6 @@ import {EmployeeFormComponent} from './employee-form/employee-form.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ConfirmPopupComponent} from './popup/confirm-popup/confirm-popup.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import {PaginatorComponent} from './paginator/paginator.component';
 import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
@@ -34,7 +33,6 @@ import {MatSelectModule} from "@angular/material/select";
     EmployeeAddComponent,
     EmployeeFormComponent,
     ConfirmPopupComponent,
-    PaginatorComponent,
   ],
   imports: [
     BrowserModule,
