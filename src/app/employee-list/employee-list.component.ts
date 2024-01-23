@@ -5,6 +5,7 @@ import {RouterService} from '../../services/router.service';
 import {PopupService} from '../../services/popup.service';
 import {EmployeeService} from '../../services/employee.service';
 import {MatTableDataSource} from "@angular/material/table";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-employee-list',
@@ -20,7 +21,8 @@ export class EmployeeListComponent implements AfterViewInit {
   constructor(
     private routerService: RouterService,
     private popupService: PopupService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private notificationService: NotificationService
   ) {
     this.fetchData();
   }
@@ -54,6 +56,7 @@ export class EmployeeListComponent implements AfterViewInit {
       if (isYes) {
         this.employeeService.deleteById(id).subscribe(() => {
           this.fetchData();
+          this.notificationService.showDeletedNotification();
         });
       }
     });
