@@ -1,2 +1,7 @@
 We used the following third party library to implement the observer pattern:
 "RxJS" used in "employee.service.ts" and "popup.service.ts"
+
+Discrepancies between wireframe and project:
+We implemented an additional functionality for our delete process.
+Just like when an employee is created, the website displays a toast that indicates the user operation was successful.
+We chose to use this behaviour for our delete process as well.

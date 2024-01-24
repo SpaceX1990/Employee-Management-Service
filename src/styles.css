@@ -2,12 +2,12 @@
 
 html, body {
   height: 100%;
-  background-color: rgba(71, 88, 184, 0.34);
 }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgba(73, 90, 189, 0.54);
 }
 
 * {
@@ -40,7 +40,7 @@ body {
   width: 960px;
   height: 450px;
   padding: 25px 90px 60px 60px;
-  margin-left: 20%;
+  margin-left: 215px;
 }
 
 .form_layout h2{
