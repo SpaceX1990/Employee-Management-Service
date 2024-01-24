@@ -1,11 +1,12 @@
 <div class="app-route">
+  <button class="logoutButton" mat-flat-button style="background-color:#778899; color:#fff;">Logout</button>
 <p>Employee List</p>
 <div class="topBar">
   <div class="searchBar">
     <mat-form-field class="example-form-field">
       <mat-label>Search</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Search for an employee">
-      <button matSuffix mat-icon-button aria-label="Clear">
+      <input matInput type="text" [(ngModel)]="value"  (keyup)="applyFilter($event)" placeholder="Search for an employee">
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter($event)">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>

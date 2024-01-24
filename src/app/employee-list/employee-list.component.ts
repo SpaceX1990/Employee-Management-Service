@@ -17,6 +17,7 @@ export class EmployeeListComponent implements AfterViewInit {
 
   dataSource = new MatTableDataSource<EmployeeModel>();
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'street', 'postcode', 'city', 'phone', 'action'];
+  value:string = '';
 
   constructor(
     private routerService: RouterService,
@@ -69,5 +70,10 @@ export class EmployeeListComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  clearFilter(event:Event){
+    this.value='';
+    this.applyFilter({target:{value:''}}as any);
   }
 }
