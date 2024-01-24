@@ -5,3 +5,4 @@ Discrepancies between wireframe and project:
 We implemented an additional functionality for our delete process.
 Just like when an employee is created, the website displays a toast that indicates the user operation was successful.
 We chose to use this behaviour for our delete process as well.
+In contrast to the wireframe, we have decided to also display the ID field in the update component to ensure a uniform layout
