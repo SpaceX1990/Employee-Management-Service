@@ -1,0 +1,2 @@
+We used the following third party library to implement the observer pattern:
+"RxJS" used in "employee.service.ts" and "popup.service.ts"
