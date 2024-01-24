@@ -6,6 +6,7 @@ import {PopupService} from '../../services/popup.service';
 import {EmployeeService} from '../../services/employee.service';
 import {MatTableDataSource} from "@angular/material/table";
 import {NotificationService} from "../../services/notification.service";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-employee-list',
@@ -14,6 +15,7 @@ import {NotificationService} from "../../services/notification.service";
 })
 export class EmployeeListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   dataSource = new MatTableDataSource<EmployeeModel>();
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'street', 'postcode', 'city', 'phone', 'action'];
